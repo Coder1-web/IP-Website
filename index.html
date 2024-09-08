@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Viewer</title>
+    <style>
+        /* Default light mode styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #e0e0e0, #818181);
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            text-align: center;
+            transition: background 0.3s, color 0.3s;
+        }
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background: #f0f0f0;
+            padding: 10px 0;
+            border-bottom: 2px solid #00ff00;
+            box-shadow: 0 2px 5px rgba(0, 255, 0, 0.3);
+        }
+        .navbar a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+        .navbar a:hover {
+            color: #00ff00;
+        }
+        .header {
+            padding: 20px;
+            border-bottom: 1px solid #00ff00;
+            background-color: #f0f0f0;
+            box-shadow: 0 2px 5px rgba(0, 255, 0, 0.3);
+        }
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            font-weight: bold;
+        }
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+            line-height: 1.6;
+            text-align: justify;
+            max-width: 800px;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 40px;
+            text-align: left;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        .footer {
+            padding: 10px;
+            background: #f0f0f0;
+            border-top: 1px solid #00ff00;
+            box-shadow: 0 -2px 5px rgba(16, 146, 27, 0.548);
+        }
+        .view-ip-button {
+            background-color: #00ff00;
+            border: none;
+            color: #000000;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .view-ip-button:hover {
+            background-color: #00cc00;
+        }
+        .login-button {
+            background-color: #1eff00;
+            border: none;
+            color: #000000;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .login-button:hover {
+            background-color: #cc0000;
+        }
+        .mode-toggle {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #333;
+            color: #f5f5f5;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+        }
+        .mode-toggle.light {
+            background: #f5f5f5;
+            color: #333;
+        }
+        .mode-toggle.light:hover {
+            background: #e0e0e0;
+        }
+        .mode-toggle.dark {
+            background: #333;
+            color: #f5f5f5;
+        }
+        .mode-toggle.dark:hover {
+            background: #555;
+        }
+        /* Dark mode styles */
+        .dark-mode {
+            background: linear-gradient(to right, #1b1b1b, #696969);
+            color: #f5f5f5;
+        }
+        .dark-mode .navbar {
+            background: #fafafa;
+        }
+        .dark-mode .header {
+            background-color: #333;
+        }
+        .dark-mode .footer {
+            background: #202020;
+        }
+        .dark-mode .view-ip-button {
+            background-color: #00ff00;
+            color: #333;
+        }
+        .dark-mode .view-ip-button:hover {
+            background-color: #00cc00;
+        }
+        /* Easter Egg Styles */
+        .easter-egg {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 0, 0.7);
+            font-size: 1.5rem;
+        }
+        .easter-egg.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <button class="mode-toggle light" onclick="toggleMode()">🌙</button>
+    <div class="header">
+        <h1>IP Viewer</h1>
+    </div>
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="whats-ip.html">What's IP</a>
+        <a href="how-to-use.html">How to Use</a>
+        <a href="where-to-get.html">Where to Get</a>
+        <a href="what-can-we-do.html">What Can We Do</a>
+        <a href="more.html">More</a>
+    </div>
+    <div class="content">
+        <h2>Understanding IP Addresses and Networks</h2>
+        <p>IP addresses are fundamental to the functioning of the internet and other networks. They are unique identifiers assigned to each device connected to a network, allowing these devices to communicate with each other. There are two main types of IP addresses: IPv4 and IPv6. IPv4 addresses are 32-bit numbers usually written in decimal format, while IPv6 addresses are 128-bit numbers written in hexadecimal format.</p>
+
+        <h2>Types of IP Addresses</h2>
+        <p>There are several types of IP addresses that play different roles in networking:</p>
+        <ul>
+            <li><strong>Public IP Addresses:</strong> Assigned to devices that are directly accessible over the internet. These addresses are unique across the entire internet and are used for communication between networks.</li>
+            <li><strong>Private IP Addresses:</strong> Used within private networks. These addresses are not routable over the internet and are used to identify devices within a local network.</li>
+            <li><strong>Static IP Addresses:</strong> Assigned manually to a device and do not change. They are used for devices that need a consistent address.</li>
+            <li><strong>Dynamic IP Addresses:</strong> Assigned by a DHCP server and can change over time. These addresses are typically used for devices that do not require a permanent IP address.</li>
+        </ul>
+
+        <h2>Subnetting</h2>
+        <p>Subnetting is the practice of dividing a network into smaller, manageable segments called subnets. It improves network performance and security by isolating different network segments. Each subnet has its own network address and can operate independently of other subnets.</p>
+
+        <h2>Network Classes</h2>
+        <p>IP addresses are divided into different classes based on their range:</p>
+        <ul>
+            <li><strong>Class A:</strong> IP addresses from 1.0.0.0 to 126.0.0.0. Suitable for very large networks.</li>
+            <li><strong>Class B:</strong> IP addresses from 128.0.0.0 to 191.255.0.0. Suitable for medium-sized networks.</li>
+            <li><strong>Class C:</strong> IP addresses from 192.0.0.0 to 223.255.255.0. Suitable for small networks.</li>
+            <li><strong>Class D:</strong> IP addresses from 224.0.0.0 to 239.255.255.255. Used for multicast groups.</li>
+            <li><strong>Class E:</strong> IP addresses from 240.0.0.0 to 255.255.255.255. Reserved for experimental use.</li>
+        </ul>
+
+        <h2>Network Address Translation (NAT)</h2>
+        <p>NAT is a technique used to map private IP addresses to a single public IP address. It allows multiple devices on a local network to share a single public IP address for internet access. NAT improves security and conserves IP address space.</p>
+        
+        <button class="view-ip-button" onclick="location.href='view-ip.html'">View Your IP</button>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 IP Viewer. All rights reserved.</p>
+    </div>
+    <div class="easter-egg" id="easter-egg">
+        🎉 Congratulations! You've unlocked an Easter egg! 🎉
+    </div>
+    <script>
+        let isDarkMode = false;
+
+        function toggleMode() {
+            document.body.classList.toggle('dark-mode', !isDarkMode);
+            const modeToggleButton = document.querySelector('.mode-toggle');
+            modeToggleButton.classList.toggle('dark', !isDarkMode);
+            modeToggleButton.classList.toggle('light', isDarkMode);
+            modeToggleButton.innerText = isDarkMode ? '🌙' : '☀️';
+            isDarkMode = !isDarkMode;
+        }
+
+        function showEasterEgg() {
+            document.getElementById('easter-egg').classList.add('active');
+        }
+
+        let timer;
+        function startEasterEggTimer() {
+            timer = setTimeout(showEasterEgg, 120000); // 2 minutes
+        }
+
+        function resetEasterEggTimer() {
+            clearTimeout(timer);
+            startEasterEggTimer();
+        }
+
+        window.onload = startEasterEggTimer;
+        window.addEventListener('mousemove', resetEasterEggTimer);
+        window.addEventListener('keypress', resetEasterEggTimer);
+    </script>
+</body>
+</html>
